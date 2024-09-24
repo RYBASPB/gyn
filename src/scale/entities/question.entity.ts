@@ -1,11 +1,20 @@
 import { Group } from './group.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity()
 export class Question {
-  constructor(
-    public id: number,
-    public name: string,
-    public description: string,
-    public value: number,
-    public group: Group
-  ) {}
+  @PrimaryGeneratedColumn()
+  public id: number;
+
+  @Column()
+  public name: string;
+
+  @Column()
+  public description: string;
+
+  @Column()
+  public value: number;
+
+  @ManyToOne(() => Group, g => g.questions)
+  public group: Group
 }
