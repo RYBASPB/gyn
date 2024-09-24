@@ -4,6 +4,9 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ScaleModule } from './scale/scale.module';
+import { Scale } from './scale/entities/scale.entity';
+import { Group } from './scale/entities/group.entity';
+import { Question } from './scale/entities/question.entity';
 
 @Module({
   imports: [ConfigModule.forRoot({envFilePath: ".env"}),
@@ -18,7 +21,7 @@ import { ScaleModule } from './scale/scale.module';
           username: process.env.DATABASE_USERNAME,
           password: process.env.DATABASE_PASSWORD,
           database: process.env.DATABASE_NAME,
-          entities: [],
+          entities: [Scale, Group, Question],
           synchronize: false
         }
       }
